@@ -35,6 +35,6 @@ module.exports = {
     callback: async (client, interaction) => {
         await interaction.deferReply();
         putComputerToSleep();
-        interaction.editReply(`**Putting the server to sleep**... \n😴🛏️😴🛏️😴🛏️😴🛏️\n======================`);
+        interaction.editReply(`======================\n**Putting the server to sleep**... 😴\n======================`);
     }
 }

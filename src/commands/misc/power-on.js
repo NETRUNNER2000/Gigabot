@@ -3,7 +3,8 @@ module.exports = {
     description: "Start the server!",
     devOnly: false,
 
-    callback: (client, interaction) => {
-        interaction.reply("Attempting to start the server...");
+    callback: async (client, interaction) => {
+        await interaction.deferReply();
+        interaction.editReply("======================\n**This functionality is in development**\n**Sit tight** 😉\n======================");
     }
 }

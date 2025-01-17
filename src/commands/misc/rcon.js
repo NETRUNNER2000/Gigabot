@@ -66,13 +66,13 @@ module.exports = {
                 })();
             }
             else{
-                interaction.editReply("======================\nSERVER IS ONLINE ✅\nMINECRAFT IS OFFLINE ❌\n======================");
+                interaction.editReply("======================\n**SERVER IS ONLINE** ✅\nMINECRAFT IS OFFLINE ❌\n======================");
                 return;
             }
 
         }else{
 
-            interaction.editReply("======================\nSERVER IS OFFLINE ❌\n======================");
+            interaction.editReply("======================\n**SERVER IS OFFLINE** ❌\n======================");
             return;
    
         }     

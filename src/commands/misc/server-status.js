@@ -50,7 +50,7 @@ module.exports = {
         }
         else{ 
 
-            statusString = "======================\nSERVER IS OFFLINE ❌\n======================";
+            statusString = "======================\n**SERVER IS OFFLINE** ❌\n======================";
             interaction.editReply(statusString);
         
         }    

@@ -32,9 +32,9 @@ module.exports = {
         sendWakeOnLan(macAddress)
         .then(() => console.log('WOL packet sent successfully'))
         .catch((err) => {
-            interaction.editReply('**Sending magic packet failed** \n💔💔💔💔💔💔💔💔\n======================');
+            interaction.editReply('======================\n**Sending magic packet failed** 💔\n======================');
             console.error(`Failed to send WOL packet: ${err}`)
         });
-        interaction.editReply('**Sending magic packet to WOL** \n✨✨✨✨✨✨✨✨\n======================');
+        interaction.editReply('======================\n**Sending magic packet to WOL** ✨\n======================');
     }
 }
