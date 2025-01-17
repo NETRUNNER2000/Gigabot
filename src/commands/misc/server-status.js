@@ -8,7 +8,7 @@ module.exports = {
     devOnly: false,
 
     callback: async (client, interaction) => {
-
+        await interaction.deferReply();
         const status = await checkIfPCOnline('192.168.1.130');
         let statusString = "";
 
@@ -21,9 +21,9 @@ module.exports = {
 
             if(mcStatus===false){
 
-                statusString += `Server is online ✅\nMinecraft Server: ❌`;
+                statusString += `======================\n**SERVER IS ONLINE** ✅\n======================\nMinecraft is offline ❌`;
                 console.log("Status string: " + statusString);
-                interaction.reply(statusString);
+                interaction.editReply(statusString);
 
             }
             else{
@@ -31,17 +31,27 @@ module.exports = {
                 .then(success => {
                     
                     const { motd, gametype, game_id, version, map, port, online_players, max_players, players,  } = success;
-                    statusString += `Server is online ✅\n\nmotd: ${motd}\ngametype: ${gametype}\ngame_id: ${game_id}\nversion: ${version}\nmap: ${map}\nport: ${port}\nonline_players: ${online_players}\nplayers: ${players}`;
+                    statusString += `======================\n**SERVER IS ONLINE** ✅\n======================\n`
+                    + `🌟 Motd: - ${motd}\n`
+                    + `🎮 Gametype: - ${gametype}\n`
+                    + `🆔 Game ID: - ${game_id}\n`
+                    + `🔖 Version: - ${version}\n`
+                    + `🗺️ Map: - ${map}\n`
+                    + `🔌 Port: - ${port}\n`
+                    + `👥 Online Players: - ${online_players}\n`
+                    + `👤 Players: - ${players.length > 0 ? players.join(", ") : "None"}\n======================`;
+                  
+
                     console.log("Status string: " + statusString);   
-                    interaction.reply(statusString);
+                    interaction.editReply(statusString);
                 
                 });
             } 
         }
         else{ 
 
-            statusString = "Server is offline ❌";
-            interaction.reply(statusString);
+            statusString = "======================\nSERVER IS OFFLINE ❌\n======================";
+            interaction.editReply(statusString);
         
         }    
     }

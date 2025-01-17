@@ -27,10 +27,14 @@ module.exports = {
     description: "wake the Godzilla up",
     devOnly: false,
 
-    callback: (client, interaction) => {
+    callback: async (client, interaction) => {
+        await interaction.deferReply();
         sendWakeOnLan(macAddress)
         .then(() => console.log('WOL packet sent successfully'))
-        .catch((err) => console.error(`Failed to send WOL packet: ${err}`));
-        interaction.reply('Sending magic packet to Wake On LAN ✨');
+        .catch((err) => {
+            interaction.editReply('**Sending magic packet failed** \n💔💔💔💔💔💔💔💔\n======================');
+            console.error(`Failed to send WOL packet: ${err}`)
+        });
+        interaction.editReply('**Sending magic packet to WOL** \n✨✨✨✨✨✨✨✨\n======================');
     }
 }

@@ -1,5 +1,3 @@
-const ping = require('ping');
-
 // API call to check if Minecraft server is running
 async function checkMinecraftRunning() {
     try {
@@ -8,11 +6,14 @@ async function checkMinecraftRunning() {
       
       if (data.isMinecraftRunning !== undefined) {
         console.log('Is Minecraft running?', data.isMinecraftRunning);
+        return true;
       } else {
         console.error('Invalid response format');
+        return false;
       }
     } catch (error) {
       console.error('Error fetching the server status:', error);
+      return false;
     }
   }
 
