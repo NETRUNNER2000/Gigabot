@@ -1,0 +1,25 @@
+[Unit]
+Description=Gigabot Service
+
+Wants=network.target
+After=network.target
+
+[Service]
+User=auto
+Group=auto-group
+Nice=5
+KillMode=control-group
+SuccessExitStatus=0 1
+
+ProtectHome=true
+ProtectSystem=full
+PrivateDevices=true
+NoNewPrivileges=true
+PrivateTmp=true
+InaccessibleDirectories=/root /sys /srv -/opt /media -/lost+found
+ReadWriteDirectories=/var/Gigabot
+WorkingDirectory=/var/Gigabot
+ExecStart=node .
+
+[Install]
+WantedBy=multi-user.target

@@ -1,6 +1,7 @@
 const {ActivityType} = require("discord.js")
 const {Rcon} = require('rcon-client');
 const { mcServerIp } = require('../../../config.json');
+const {checkIfPCOnline} = require("../../utils/checkIfPCOnline")
 
 /**
  * Send a command to a Minecraft server via RCON.
@@ -34,37 +35,38 @@ let playerCount = 0;
 module.exports = (client) => {
     console.log("Creating recursive task to update player count");
    
-    setInterval(()=>{
+    setInterval(async () => {
                 
-                (async () => {
-                    try {
-                        const response = await sendRconCommand(mcServerIp, 25575, 'yeet!123', 'list');
-                        const match = response.match(/There are (\d+) of a max of (\d+) players online:/);
+                // console.log("Is PC online: " + onlineStatus);
+                // (async () => {
+                //     try {
+                //         const response = await sendRconCommand(mcServerIp, 25575, 'yeet!123', 'list');
+                //         const match = response.match(/There are (\d+) of a max of (\d+) players online:/);
 
-                        if (match) {
-                            playerCount = parseInt(match[1], 10); // Extract the first number
-                        } else {
-                            console.error("Could not parse the player count from the text.");
-                        }
+                //         if (match) {
+                //             playerCount = parseInt(match[1], 10); // Extract the first number
+                //         } else {
+                //             console.error("Could not parse the player count from the text.");
+                //         }
                         
-                    } catch (error) {
-                        console.log("Something broke: " + error);
-                    }
-                })();
-                 // get pc online status through api call
-                let PCOnlineStatus = false;
-                console.log("Players online: " + playerCount)
-                if(PCOnlineStatus){
-                    client.user.setPresence({
-                        activities: [{ name: playerCount.toString(), type: ActivityType.Playing }],
-                        status: 'online'
-                    });
-                }else{
-                    client.user.setPresence({
-                        activities: [{ name: playerCount.toString(), type: ActivityType.Playing }],
-                        status: 'dnd'
-                    })
-                }
+                //     } catch (error) {
+                //         console.log("Something broke: " + error);
+                //     }
+                // })();
+                //  // get pc online status through api call
+                // let PCOnlineStatus = false;
+                // console.log("Players online: " + playerCount)
+                // if(PCOnlineStatus){
+                //     client.user.setPresence({
+                //         activities: [{ name: playerCount.toString(), type: ActivityType.Playing }],
+                //         status: 'online'
+                //     });
+                // }else{
+                //     client.user.setPresence({
+                //         activities: [{ name: playerCount.toString(), type: ActivityType.Playing }],
+                //         status: 'dnd'
+                //     })
+                // }
              
-    }, 60000);
+    }, 10000);
 }

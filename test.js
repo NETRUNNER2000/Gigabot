@@ -1,22 +1,31 @@
-const { Rcon } = require('rcon-client');
+// URL of the API endpoint
+const apiUrl = "http://192.168.1.130:3000/sleep";
 
-(async () => {
-    const rcon = new Rcon({
-        host: '192.168.1.130', // Replace with your server's IP
-        port: 25575,           // Default RCON port
-        password: 'yeet!123', // Replace with your RCON password
+// Password to authenticate the request
+const apiPassword = "your-secure-password";
+
+// Function to call the API
+async function putComputerToSleep() {
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: apiPassword }),
     });
 
-    try {
-        await rcon.connect();
-
-        // Send a command to the server
-        const response = await rcon.send('say Hello from RCON!');
-        console.log('Server Response:', response);
-
-        // Disconnect when done
-        rcon.end();
-    } catch (error) {
-        console.error('Error communicating with RCON:', error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Error:", errorData.message);
+    } else {
+      const responseData = await response.json();
+      console.log("Success:", responseData.message);
     }
-})();
+  } catch (error) {
+    console.error("Failed to make the request:", error.message);
+  }
+}
+
+// Call the function
+putComputerToSleep();

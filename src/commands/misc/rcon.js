@@ -48,10 +48,10 @@ module.exports = {
         (async () => {
             try {
                 const response = await sendRconCommand(mcServerIp, 25575, 'yeet!123', cmdText);
-                interaction.reply(`Command '${cmdText}' executed on server sucessfully\n\nServer Response: ${response}`);
+                interaction.reply(`Command '${cmdText}' executed on server sucessfully 😎\n\nServer Response: ${response}`);
                 console.log('Server Response:', response);
             } catch (error) {
-                interaction.reply("Something broke: " + error.response);
+                interaction.reply("😢 Something broke: " + error.response);
             }
         })();
     }
