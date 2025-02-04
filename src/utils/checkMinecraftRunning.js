@@ -3,8 +3,8 @@ async function checkMinecraftRunning() {
     try {
       const response = await fetch('http://192.168.1.130:3000/is-minecraft-running');  // Change URL to your actual endpoint
       const data = await response.json(); // Parse the JSON response
-      
-      if (data.isMinecraftRunning !== undefined) {
+      console.log(data);
+      if (data.isMinecraftRunning == true) {
         console.log('Is Minecraft running?', data.isMinecraftRunning);
         return true;
       } else {

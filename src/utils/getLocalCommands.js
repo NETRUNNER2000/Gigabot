@@ -17,7 +17,7 @@ module.exports = (exceptions=[]) =>{
         for(const cmdFile of cmdFiles){
             const cmdObject = require(cmdFile);
             if(exceptions.includes(cmdObject.name)){continue;}
-            console.log(cmdObject)
+            //console.log(cmdObject)
             localCommands.push(cmdObject);
         }
     }

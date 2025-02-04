@@ -15,7 +15,7 @@ module.exports = {
         if(status) {
 
             const Query = require("minecraft-query");
-            const q = new Query({host: '192.168.1.130', port: 25565, timeout: 7500});
+            const q = new Query({host: '192.168.1.130', port: 25565, timeout: 3000});
             const currentDate = new Date();
             const mcStatus = await checkMinecraftRunning();
 
